@@ -4,6 +4,7 @@
 > **Specc is currently in Alpha.**
 > Hardware sensor mappings are experimental and have only been validated on Ubuntu 22.04 LTS with AMD/NVIDIA hardware. Do not rely on this tool for mission-critical monitoring yet.
 
+
 **Specc** is a lightweight, native system profiler designed specifically for the Ubuntu ecosystem. Built with Python 3.10, it gathers granular hardware specifications, OS metadata, and real-time thermal data into a structured JSON format.
 
 **specc** is designed to be highly portable, secure, and ready for deployment via Snapcraft.
