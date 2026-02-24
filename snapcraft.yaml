@@ -1,0 +1,40 @@
+name: specc
+version: '0.1.0'
+summary: A lightweight system hardware and thermal profiler
+description: |
+  Specc is a Python-based utility designed for the Ubuntu ecosystem to 
+  gather granular hardware specifications and real-time thermal data.
+
+# 'devel' allows for iterative testing; switch to 'stable' for Store release
+grade: devel 
+
+# 'strict' confinement ensures the app runs in a secure sandbox.
+# Access to hardware is managed via the 'plugs' defined below.
+confinement: strict 
+
+# core22 corresponds to the Ubuntu 22.04 LTS runtime environment
+base: core22 
+
+apps:
+  specc:
+    # Points to the executable created by setuptools/entry_points
+    command: bin/specc
+    # Interfaces (plugs) allow the snap to "break out" of the sandbox 
+    # to read specific system telemetry.
+    plugs:
+      - hardware-observe # Required for /sys/class/hwmon (thermals)
+      - system-observe   # Required for /proc/meminfo and hardware IDs
+      - mount-observe    # Required for disk/partition metadata
+
+parts:
+  specc:
+    # The python plugin handles venv creation and dependency resolution
+    plugin: python
+    source: .
+    # These are bundled inside the snap, ensuring no system-level conflicts
+    python-packages:
+      - psutil
+      - jsonschema
+    # Ensure build dependencies are present in the build environment
+    build-packages:
+      - python3-setuptools

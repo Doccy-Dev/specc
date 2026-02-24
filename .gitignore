@@ -1,0 +1,48 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# --- Environments ---
+.venv/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Snapcraft ---
+prime/
+stage/
+parts/
+*.snap
+.snapcraft/
+
+# --- Project Specific ---
+# Ignore the logs and reports the tool generates
+system_errors.log
+report.json
+
+# --- OS / IDE ---
+.DS_Store
+.vscode/
+.idea/
