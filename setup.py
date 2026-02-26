@@ -12,7 +12,8 @@ setup(
     # jsonschema: For validating the generated report structure.
     install_requires=[
         'psutil>=5.9.0',
-        'jsonschema>=4.1.0'
+        'jsonschema>=4.1.0',
+        'rich>=12.0.0' #needed for console output
     ],
     
     # Entry Points create the actual CLI command.

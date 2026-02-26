@@ -1,68 +1,62 @@
 import psutil
 import os
+import platform # Added for better distro detection
 import logging
 
-# Module-level logger for hardware telemetry errors
 logger = logging.getLogger(__name__)
 
 def gather_os_data():
-    """Extracts core kernel and distribution metadata using the os module."""
     try:
-        # os.uname() is standard on Unix-like systems (Linux, macOS)
         uname = os.uname()
+        # platform.freedesktop_os_release() is great for Ubuntu/Debian 
+        # to get the "Pretty Name" like "Ubuntu 22.04.3 LTS"
+        try:
+            distro_info = platform.freedesktop_os_release()
+            distro = distro_info.get("PRETTY_NAME", "Ubuntu")
+        except:
+            distro = "Ubuntu"
+
         return {
-            "OS_Name": uname.sysname,
-            "Version": uname.version,
-            "Architecture": uname.machine,
-            "Kernel_Release": uname.release
+            "distro": distro,
+            "kernel": uname.release,
+            "arch": uname.machine
         }
     except Exception as e:
         logger.error("OS Data Failure: %s", str(e))
-        return None
+        return {"distro": "Linux", "kernel": "Unknown", "arch": "Unknown"}
 
 def gather_thermal_data():
-    """
-    Reads thermal sensors from /sys/class/hwmon via psutil.
-    Logic includes fallbacks for AMD (k10temp) and Intel (coretemp).
-    """
     try:
-        # sensors_temperatures() returns a dict of hardware monitoring objects
         temps = psutil.sensors_temperatures()
         
-        # 1. CPU: Dynamic key lookup to support multiple CPU vendors
+        # Return raw floats so the UI can decide on the color/formatting
         cpu_key = next((k for k in ['k10temp', 'coretemp', 'cpu_thermal'] if k in temps), None)
-        cpu_val = f"{temps[cpu_key][0].current}°C" if cpu_key else "N/A"
+        cpu_val = temps[cpu_key][0].current if cpu_key else None
 
-        # 2. Storage: Primary focus on NVMe controller telemetry
         nvme_key = temps.get('nvme', [])
-        nvme_val = f"{nvme_key[0].current}°C" if nvme_key else "N/A"
+        nvme_val = nvme_key[0].current if nvme_key else None
 
-        # 3. Motherboard: Specific WMI/SuperIO chip mappings
-        # Note: 'gigabyte_wmi' is specific to certain AMD Gigabyte boards
         mb_key = temps.get('gigabyte_wmi', [])
-        mb_val = f"{mb_key[0].current}°C" if mb_key else "N/A"
+        mb_val = mb_key[0].current if mb_key else None
 
         return {
-            "CPU": cpu_val,
-            "GPU": "N/A", # Reserved for nvidia-smi / rocm-smi integration
-            "Motherboard": mb_val,
-            "NVMe_Drive": nvme_val
+            "cpu_temp": cpu_val,
+            "gpu_temp": None, 
+            "mb_temp": mb_val,
+            "nvme_temp": nvme_val
         }
     except Exception as e:
-        # We use warning instead of error here because lack of sensor access
-        # is common in virtualized or restricted (Snap) environments.
         logger.warning("Could not read thermal data: %s", str(e))
-        return None
+        return {}
 
 def gather_hardware_specs():
-    """Gathers physical and logical hardware constraints."""
     try:
         return {
-            "Physical_Cores": psutil.cpu_count(logical=False),
-            "Logical_Processors": psutil.cpu_count(),
-            "Total_RAM_GB": round(psutil.virtual_memory().total / (1024**3)),
-            "GPU_Model": "NVIDIA"  # TODO: Implement pci-utils/lspci lookup
+            "cpu_model": "x86_64 Processor", # Placeholder until lscpu integration
+            "cores": psutil.cpu_count(logical=False),
+            "threads": psutil.cpu_count(),
+            "ram_total_gb": round(psutil.virtual_memory().total / (1024**3), 2),
         }
     except Exception as e:
         logger.error("Hardware Spec Failure: %s", str(e))
-        return None
+        return {}
