@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='specc',
-    version='0.1.0',
+    version='0.1.2',
     # 'packages' tells setuptools which directories to bundle.
     # We use ['src'] because our logic lives in the src/ folder.
     packages=['src'],

@@ -46,3 +46,6 @@ report.json
 .DS_Store
 .vscode/
 .idea/
+
+# --- Misc ---
+skip.md

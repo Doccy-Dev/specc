@@ -1,5 +1,5 @@
 name: specc
-version: '0.1.1'
+version: '0.1.2'
 summary: A lightweight system hardware and thermal profiler
 description: |
   Specc is a Python-based utility designed for the Ubuntu ecosystem to 

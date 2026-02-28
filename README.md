@@ -1,7 +1,7 @@
 # Specc
 
 > [!IMPORTANT]
-> **Specc is currently in Alpha (v0.1.1).**
+> **Specc is currently in Alpha (v0.1.2).**
 > Hardware sensor mappings are experimental and have only been validated on Ubuntu 22.04 LTS with AMD/NVIDIA hardware. Do not rely on this tool for mission-critical monitoring yet.
 
 **Specc** is a lightweight, native system profiler designed specifically for the Ubuntu ecosystem. Built with Python 3.10, it gathers granular hardware specifications, OS metadata, and real-time thermal data into a structured JSON format or a clean terminal dashboard.
@@ -50,13 +50,20 @@ specc
 
 ```
 
+or 
+
+```bash
+specc --live # to get real time data
+
+```
+
 ### Example
 
 ```bash
 ~$ specc
 ╭───────────────────────╮
 │ Specc System Profiler │
-╰─────── v0.1.1 ────────╯
+╰─────── v0.1.2 ────────╯
               Hardware & OS               
 ┏━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
 ┃ Component ┃ Detail                     ┃
@@ -83,7 +90,7 @@ specc --output report.json
 
 ## Roadmap
 
-* [ ] **Next (v0.1.2)**: **Live Monitoring**: Implement `--live` flag with a 1s refresh rate for real-time thermal tracking using `rich.live`.
+* [x] **Next (v0.1.2)**: **Live Monitoring**: Implemented `--live` flag (1s default) for real-time thermal tracking via `rich.live`.
 * [ ] **Upcoming (v0.2.0)**: **GPU Telemetry**: Integrate `nvidia-smi` and `rocm-smi` to replace "N/A" with actual temps/models.
 * [ ] **Native JSON Schema**: Validation for output consistency using `jsonschema`.
 * [ ] **Cross-Platform**: Port `os.uname` and thermal pathing to `platform` for Windows/macOS support.
