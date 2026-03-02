@@ -1,5 +1,17 @@
 # Specc
 
+> [!NOTE]
+> **Environment Update**
+>
+> I was previously working on a borrowed PC running Ubuntu 22, where I had limited permissions (no `sudo` access). I no longer have access to that machine and am now using a Windows laptop.
+>
+> The new setup includes WSL with Ubuntu 24, which changes my development workflow. While this makes continuing certain Linux-based tasks more challenging, it also allows me to expand support and testing for Windows environments.
+>
+> I hope to return to a full Ubuntu setup in the future, as it remains my preferred OS.
+>
+> Thank you for your understanding.
+
+
 > [!IMPORTANT]
 > **Specc is currently in Alpha (v0.1.2).**
 > Hardware sensor mappings are experimental and have only been validated on Ubuntu 22.04 LTS with AMD/NVIDIA hardware. Do not rely on this tool for mission-critical monitoring yet.
