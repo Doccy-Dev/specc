@@ -32,7 +32,7 @@
 To set up a local development environment:
 
 ```bash
-git clone https://github.com/doccy/specc.git
+git clone https://github.com/Doccy-Dev/specc.git
 cd specc
 python3 -m venv .venv
 source .venv/bin/activate
@@ -102,10 +102,10 @@ specc --output report.json
 
 ## Roadmap
 
-* [x] **Next (v0.1.2)**: **Live Monitoring**: Implemented `--live` flag (1s default) for real-time thermal tracking via `rich.live`.
-* [ ] **Upcoming (v0.2.0)**: **GPU Telemetry**: Integrate `nvidia-smi` and `rocm-smi` to replace "N/A" with actual temps/models.
-* [ ] **Native JSON Schema**: Validation for output consistency using `jsonschema`.
-* [ ] **Cross-Platform**: Port `os.uname` and thermal pathing to `platform` for Windows/macOS support.
+* [x] **Live Monitoring**: Implemented `--live` flag (1s default) for real-time thermal tracking via `rich.live`.
+* [ ] **Windows compatibility**: to get the project in current state working with Windows.
+* [ ] **HUD**: Build a stand alone heads up display designed to run as always on, `--live` info.
+* [ ] **GPU Telemetry**: Integrate `nvidia-smi` and `rocm-smi` to replace "N/A" with actual temps/models.
 
 ## Security & Confinement
 
