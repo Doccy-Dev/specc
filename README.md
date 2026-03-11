@@ -104,6 +104,7 @@ specc --output report.json
 
 * [x] **Live Monitoring**: Implemented `--live` flag (1s default) for real-time thermal tracking via `rich.live`.
 * [ ] **Windows compatibility**: to get the project in current state working with Windows.
+    - _I dont know how to do this on windows... any help would be good!_ - _How do people ask the community for help anyway?_
 * [ ] **HUD**: Build a stand alone heads up display designed to run as always on, `--live` info.
 * [ ] **GPU Telemetry**: Integrate `nvidia-smi` and `rocm-smi` to replace "N/A" with actual temps/models.
 
