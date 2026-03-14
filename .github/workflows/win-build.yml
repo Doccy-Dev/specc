@@ -3,7 +3,8 @@ name: Build Windows Exe
 on:
   push:
     branches: [ "main" ]
-  pull_request:    branches: [ "main" ]
+  pull_request:    
+    branches: [ "main" ] # typo fixed!
 
 jobs:
   build-windows:
