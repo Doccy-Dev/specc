@@ -1,3 +1,0 @@
-# Windows System Implementation
-# this is for windows based systems, such as windows 10, windows 11, etc. it may work on other versions of windows, but it is not guaranteed
-# this is the new direction of the project, as it is now focused on windows. read the readme roadmap for explination. this file is still in development, and may not be fully functional yet. it is also not guaranteed to be fully functional in the future, as it is still in development. but it is here for the future, and it will be filled with windows specific code in the future. for now, it is just a placeholder, and it will be filled with windows specific code in the future.
