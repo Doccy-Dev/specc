@@ -1,5 +1,6 @@
 import argparse
 import json
+import os
 import sys
 import time
 from datetime import datetime
@@ -7,6 +8,13 @@ from rich.console import Console, Group
 from rich.table import Table
 from rich.panel import Panel
 from rich.live import Live
+
+# Ensure the project root is on sys.path when running the script directly.
+# This allows `python src/main.py` to import the package from the repo root.
+if __name__ == "__main__":
+    root_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+    if root_dir not in sys.path:
+        sys.path.insert(0, root_dir)
 
 # Local project imports
 from src.config import Config
